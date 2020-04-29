@@ -1,0 +1,124 @@
+﻿@model Zero.Models.Сheck
+@{
+    Layout= null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Детали</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 60px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+        <h1 style="color: #419d7f; text-decoration: underline;">Личный кабинет</h1>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-sm-4">
+                <nav class="navbar bg-light" style="padding: 0; background-color: white!important; border: 1.4px solid #644a72; border-radius: 13px; width: 80%;">
+                    <!-- Links -->
+                    <ul class="nav flex-column" style="width: 100%;">
+                        <li class="nav-item" style="border-bottom: 1.4px solid #644a72;">
+                            @if (User.IsInRole("buyers"))
+                            {
+                                <a class="nav-link" asp-action="ListCheak" asp-controller="Сheck">Назад</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link" asp-action="ListCheakS" asp-controller="Сheck">Назад</a>
+                            }
+                        </li>                 
+                        <li class="nav-item" style="">
+                            <form asp-action="LogOff" asp-controller="Account">
+                                <button class="nav-link btn btn-link text-dark">Выход</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-8">
+                <div style="background-color: antiquewhite; width: 350px; border: 2px dashed gray; padding-left: 10px;">
+                    <img src="~/img/frog.png" alt="Logo" style="width: 80px;margin-left: 130px;">
+                    <center>
+                        Чек по операции<br>КВА-КВА БАНК
+                    </center>
+                    <p>
+                        <b>Операция:</b>
+                    </p>
+                    <p>
+                        Перевод денежных средств
+                    </p>
+                    <p>
+                        <b>Дата операции:</b>
+                    </p>
+                    <p>
+                        @Model.Date
+                    </p>
+                    <p>
+                        <b>Номер документа:</b>
+                    </p>
+                    <p>
+                        @Model.ID
+                    </p>
+                    <p>
+                        <b>Сумма операции:</b>
+                    </p>
+                    <p>
+                        @Model.Sum руб
+                    </p>
+                    <p>
+                        <b>Комиссия:</b>
+                    </p>
+                    <p>
+                        00.00 руб.
+                    </p>
+                    <p>
+                        <b>Код покупателя:</b>
+                    </p>
+                    <p>
+                        @Model.IdBuyer
+                    </p>
+                    <p>
+                        <b>Код поставщика:</b>
+                    </p>
+                    <p>
+                        @Model.IdSup
+                    </p>
+                    @if (Model.work == false)
+                    {
+                        <p style="background: lightgreen; padding-top: 30px; padding-bottom: 30px; width: 240px; text-align: center; margin-left: 37px; 
+                            border: 1px solid groove;">
+                            ОБРАБОТКА ПЛАТЕЖА
+                        </p>
+                    }
+                    else
+                    {
+                        @if (Model.status == true)
+                        {
+                            <p style="background: lightgreen; padding-top: 30px; padding-bottom: 30px; width: 240px; text-align: center; margin-left: 37px;
+                                border: 1px solid green;">
+                                ПЛАТЁЖ ВЫПОЛНЕН
+                            </p>
+                        }
+                        else
+                        {
+                            <p style="background: lightred; padding-top: 30px; padding-bottom: 30px; width: 240px; text-align: center; margin-left: 37px;
+                                border: 1px solid red; color:red;">
+                                ПЛАТЁЖ НЕ ВЫПОЛНЕН
+                            </p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

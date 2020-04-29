@@ -1,0 +1,83 @@
+﻿@model Zero.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+@*<script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="237901472321-9jc5ubocvcovvebt9b6qm92ivs6n1rie.apps.googleusercontent.com ">
+    <h2>Вход в приложение</h2>
+    <form method="post" asp-controller="Account" asp-action="Login"
+          asp-route-returnUrl="@Model.ReturnUrl">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Email"></label><br />
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="RememberMe"></label><br />
+            <input asp-for="RememberMe" />
+        </div>
+        <div>
+            <input type="submit" value="Войти" />
+        </div>
+    </form>
+
+
+    <!doctype html>
+    <html lang="en">*@
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+    <!-- Bootstrap CSS -->
+    <link href="~/css/signin.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <title>Авторизация</title>
+</head>
+<body>
+
+    <div class="form-signin" style="max-width: 540px;padding: 95px;">
+
+        <form method="post" asp-controller="Account" asp-action="Login"
+              asp-route-returnUrl="@Model.ReturnUrl">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mx-auto d-block" style="width: max-content;">
+                <h1 class="textform1 formcheck h3 mb-3 font-weight-normal ">CALLYDRYAS</h1>
+                <img class="formcheck mb-4" src="~/img/frog.png" alt="" width="100" height="100">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" asp-for="Email" class="form-control" id="email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Пароль:</label>
+                <input type="password" asp-for="Password" class="form-control" id="pwd">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RememberMe" type="checkbox"> Запомнить меня
+                </label>
+            </div>
+
+            <button class="btn btn-outline-success btn-block" type="submit">Войти</button>
+        </form>
+        <form>
+            <button asp-action="Register" asp-controller="Account" class="btn btn-outline-success btn-block" type="submit">Регистрация</button>
+        </form>
+    </div>
+    </body>
+
+    <!-- Optional JavaScript -->
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }

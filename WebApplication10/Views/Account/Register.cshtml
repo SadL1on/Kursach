@@ -1,0 +1,116 @@
+﻿@model Zero.ViewModels.RegisterViewModel
+@{
+    Layout = null;
+}
+@*<h2>Регистрация нового пользователя</h2>
+    <form method="post" asp-controller="Account" asp-action="Register">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div>
+            <label asp-for="Famil"></label><br />
+            <input asp-for="Famil" />
+            <span asp-validation-for="Famil"></span>
+        </div>
+        <div>
+            <label asp-for="Name"></label><br />
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label asp-for="Patronymic"></label><br />
+            <input asp-for="Patronymic" />
+            <span asp-validation-for="Patronymic"></span>
+        </div>
+        <div>
+            <label asp-for="Email"></label><br />
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <div>
+            <label asp-for="Password"></label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="PasswordConfirm"></label><br />
+            <input asp-for="PasswordConfirm" />
+            <span asp-validation-for="PasswordConfirm"></span>
+        </div>
+        <div>
+            <label>Я согласен на обработку персональных данных</label><br />
+            <input type="checkbox" />
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </form>*@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+    <!-- Bootstrap CSS -->
+    <link href="~/css/signin.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <title>Регистрация</title>
+</head>
+<body>
+    <form method="post" asp-controller="Account" asp-action="Register" class="form-signin" style="max-width: 540px;padding: 95px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mx-auto d-block" style="width: max-content;">
+            <h1 class="textform1 formcheck h3 mb-3 font-weight-normal ">CALLYDRYAS</h1>
+            <img class="formcheck mb-4" src="~/img/frog.png" alt="" width="100" height="100">
+        </div>
+
+        <div class="form-group">
+            <label for="inputImya">Имя:</label>
+            <input type="text" asp-for="Name" autofocus id="inputImya" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="inputFam">Фамилия</label>
+            <input type="text" asp-for="Famil" autofocus id="inputFam" class="form-control">
+            <span asp-validation-for="Famil" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="inputOtch">Отчество</label>
+            <input type="text" asp-for="Patronymic" autofocus id="inputOtch" class="form-control">
+            <span asp-validation-for="Patronymic" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">E-mail</label>
+            <input type="email" asp-for="Email" autofocus id="inputFam" class="form-control">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Пароль</label>
+            <input type="password" asp-for="Password" autofocus id="inputPassword" class="form-control">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Повторите пароль</label>
+            <input type="password" asp-for="PasswordConfirm" autofocus id="inputPassword" class="form-control">
+            <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+        </div>
+        <p>
+            <input type="checkbox" required name="Obrab" value="Ob1" checked>Я соглашаюсь на обработку персональных данных<Br>
+        </p>
+        <button asp-action="Register" asp-controller="Account" class="btn btn-outline-success btn-block" type="submit">Зарегистрироваться</button>
+    </form>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+  
+
+</body>
+</html>
+

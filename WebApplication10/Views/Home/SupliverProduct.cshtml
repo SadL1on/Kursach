@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Zero.Models.Product>
+@using WebApplication10.Models;
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Товары</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+
+
+        <div class="row" style="margin-top: 40px;margin-left: 37px;">
+            @foreach (var item in Model)
+            {
+                if(item == null)
+                {
+                    <center><h3>Товаров нет</h3></center>
+                }
+                <div class="col" style="display: contents;">
+                    <div class="card" style="width: 252px;border: 1px solid #419d7f;margin-right: 10px;margin-bottom: 10px;">
+                        @if (item.Image != null)
+                        {
+                            <img class="card-img-top" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" alt="Card image" style="width:100%">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src="~/img/lol.gif" alt="Card image" style="width:100%">
+                        }
+                        <div class="card-body">
+                            <h4 class="card-title"> @item.Title</h4>
+                            <h4 class="card-title">@item.Description</h4>
+                            <h4 class="card-title">Цена @item.Cost</h4>
+                            <h4 class="card-title">Количество @item.Col</h4>
+                            <form asp-controller="CartItems" asp-action="Index" asp-route-id="@item.IdProd">
+                                <input type="number" min="1" max="@item.Col" name="amount" class="btn-outline-dark" />
+                                <input type="submit" value="Купить" class="btn btn-danger" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var t = $('#asd');
+            var $btn = $('#qwe');
+            if (t != null) { $btn.prop('disabled', false); } else { $btn.prop('disabled', true); document.write("Привет Мир!"); }
+        }
+    </script>
+
+
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+</body>
+</html>

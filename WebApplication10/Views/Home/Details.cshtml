@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Zero.Models.Supplier>
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: 560px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+        <h1 style="
+    color: #419d7f;
+    text-decoration: underline;">
+           Поставщик
+        </h1>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-sm-4">
+                <nav class="navbar bg-light" style="
+    padding: 0;
+    background-color: white!important;
+    border: 1.4px solid #644a72;
+    border-radius: 13px;
+    width: 80%;">
+                    <!-- Links -->
+                    <ul class="nav flex-column" style="
+    width: 100%;
+">
+                        <li class="nav-item" style="
+    border-bottom: 1.4px solid #644a72;
+">
+                            <a class="nav-link" asp-action="ListCheak" asp-controller="Сheck">Чеки</a>
+                        </li>
+                        <li class="nav-item" style="
+    border-bottom: 1.4px solid #644a72;
+">
+                            <a class="nav-link" asp-action="Uplvl" asp-controller="Home">Стать поставщиком</a>
+                        </li>
+                        <li class="nav-item" style="
+">
+                            <form asp-action="LogOff" asp-controller="Account">
+                                <button class="nav-link btn btn-link text-dark">Выход</button>
+                            </form>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="col-sm-8">
+                <table>
+                    <tbody>
+                        
+                        @foreach (var user in Model)
+                        {
+                            <tr>                
+                                <td rowspan="4">
+                                    <img class="card-img-top" src="data:image/jpeg;base64,@(Convert.ToBase64String(user.Docyment))"  alt="Cinque Terre" style="width: 400px;">|
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Название : @user.Company</td>
+                            </tr>
+                            <tr>
+                                <td>номер : @user.Phone</td>
+                            </tr>
+                            <tr>
+                                <td>номер карты : @user.NumberCard</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        @section Scripts {
+            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+        }
+    </body>
+</html>

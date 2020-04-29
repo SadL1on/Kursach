@@ -1,0 +1,145 @@
+﻿@model WebApplication10.ViewModels.ItemViewModel
+@{ 
+    Layout = null;
+}
+@*@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Items">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IdSupplier" class="form-control" />
+                <span asp-validation-for="IdSupplier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="control-label"></label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+
+
+        <h1 style="
+          color: #419d7f;
+          text-decoration: underline;
+          ">
+            Добавление товара
+        </h1>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col"></div>
+            <div class="col" style="display: contents;">
+                <div>
+                    <form asp-action="Create" asp-controller="Items" method="post" enctype = "multipart/form-data" class="form-signin" style="
+              width: 500px;
+              border: 1px solid #644a72;
+              border-radius: 8px;
+              padding: 50px;
+              ">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <h2 style="
+                color: #644a72;
+                background: #644a7238;
+                text-decoration: underline;
+                padding-bottom: 6px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                text-align: center;
+                ">
+                            Новый товар
+                        </h2>
+                        <div class="form-group">
+                            <label for="inputnaim">Наименование</label>
+                            <input type="text" id="inputNaim" asp-for="Title" class="form-control" placeholder="Наименование" required="" autofocus="">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnaim">Описание</label>
+                            <input type="text" id="inputNaim" asp-for="Description" class="form-control" placeholder="Описание" required="" autofocus="">
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputkol">Количество</label><br>
+                            <input asp-for="Col" type="number" class="form-control" id="kol" min="1" placeholder="1" style="height: 38px;">
+                            <script>
+                                document.getElementById('checktel').onkeydown = function (e) {
+                                    return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                }</script>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnumb">Цена</label>
+                            <input type="text" id="checktel" asp-for="Cost" class="form-control" placeholder="Цена" required="" autofocus="">
+                            <span asp-validation-for="Cost" class="text-danger"></span>
+                            <script>
+                                document.getElementById('checktel').onkeydown = function (e) {
+                                    return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                }</script>
+                        </div>
+
+                            <div class="form-group">
+                                <label for="inputnumb">Добавить фото</label>
+                                <input asp-for="Image" type="file" class="form-control-file border">
+                                <span asp-validation-for="Cost" class="text-danger"></span>
+                            </div>
+
+                        <input class="btn btn-outline-success btn-block" type="submit" value="Добавить"/>
+                    </form>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

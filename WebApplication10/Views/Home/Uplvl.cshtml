@@ -1,0 +1,204 @@
+﻿@model Zero.ViewModels.SupplierViewModel
+
+@{
+    Layout = null;
+}
+
+@*<h1>Uplvl</h1>
+
+<h4>Supplier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Uplvl" asp-controller="Home" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberCard" class="control-label"></label>
+                <input asp-for="NumberCard" class="form-control" />
+                <span asp-validation-for="NumberCard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Docyment" class="control-label"></label>
+                <input asp-for="Docyment" type="file" class="form-control" />
+                <span asp-validation-for="Docyment" class="text-danger"></span>
+            </div>
+
+            <input asp-for="Cheak" type="hidden" class="form-control" />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+@*@foreach (var p in Model)
+    {
+    <div>
+        <h4>@p.Name</h4>
+        @if (p.Docyment != null)
+            {
+        <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(p.Docyment))" />
+            }
+    </div>
+    }*@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 60px;">
+
+
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+
+
+        <h1 style="
+    color: #419d7f;
+    text-decoration: underline;
+">
+            Личный кабинет
+        </h1>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-sm-4">
+                <nav class="navbar bg-light" style="
+    padding: 0;
+    background-color: white!important;
+    border: 1.4px solid #644a72;
+    border-radius: 13px;
+    width: 80%;
+">
+
+                    <!-- Links -->
+                    <ul class="nav flex-column" style="
+    width: 100%;
+">
+                        <li class="nav-item" style="
+    border-bottom: 1.4px solid #644a72;
+">
+                            <a class="nav-link" asp-action="ListCheak" asp-controller="Сheck">Чеки</a>
+                        </li>
+                        <li class="nav-item" style="
+    border-bottom: 1.4px solid #644a72;
+">
+                            <a class="nav-link" asp-action="Uplvl" asp-controller="Home">Стать поставщиком</a>
+                        </li>
+                        <li class="nav-item" style="
+">
+                            <form asp-action="LogOff" asp-controller="Account">
+                                <button class="nav-link btn btn-link text-dark">Выход</button>
+                            </form>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="col-sm-8">
+
+                <div>
+                    <form asp-action="Uplvl" asp-controller="Home" method="post" enctype="multipart/form-data" class="form-signin" style="
+    width: 410px;
+">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <table class="textform1">
+                            <tbody>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th><label asp-for="Company">Наименование</label></th>
+                                    <th><input asp-for="Company" type="text" id="inputNaim" class="form-control" placeholder="Наименование" required autofocus="" style="width: 143%;padding: 7px; height: auto; margin-left: 15px;"></th>
+                                    <th>  <span asp-validation-for="Company" class="text-danger"></span></th>
+                                </tr>
+                                <tr>
+                                    <td><label for="inputPassword">Телефон</label></td>
+                                    <td>
+                                        <input asp-for="Phone" minlength="9" maxlength="11" required type="text" min="10000000" maxlength="12" class="form-control justify-content-center" id="check"  placeholder="Телефон" step="any" style="
+    width: 143%;
+    padding: 7px;
+    height: auto;
+    margin-left: 15px;
+">  <span asp-validation-for="Phone" class="text-danger"></span>
+                                        <script>
+                                            document.getElementById('check').onkeydown = function (e) {
+                                                return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                            }</script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="inputPassword">Номер счета</label></td>
+                                    <td>
+                                        <input asp-for="NumberCard" type="text" minlength="16" maxlength="16" min="10000000" class="form-control justify-content-center" id="check1"  placeholder="Номер счета" step="any" style="
+    width: 143%;
+    padding: 7px;
+    height: auto;
+    margin-left: 15px;
+">  <span asp-validation-for="NumberCard" class="text-danger"></span>
+                                        <script>
+                                            document.getElementById('check1').onkeydown = function (e) {
+                                                return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                            }</script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label asp-for="Docyment" class="control-label">Сертификат потдверждения</label>
+                                        <input asp-for="Docyment" type="file" class="form-control" />
+                                        <span asp-validation-for="Docyment" class="text-danger"></span>
+                                    </td>
+
+                                    <td></td>
+                                    <input asp-for="Cheak" type="hidden" class="form-control" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>
+                            <input type="checkbox" required name="Obrab" value="Ob1" checked="">Я соглашаюсь на обработку персональных данных<br>
+                        </p>
+                        <button class="btn btn-outline-success btn-block" type="submit">Отправить</button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+
+
+</body>
+</html>

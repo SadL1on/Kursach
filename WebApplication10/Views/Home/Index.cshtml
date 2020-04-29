@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Zero.Models.User>
+@{
+    ViewBag.Title = "Home pages";
+}
+    <a class="nav-link" asp-action="LogOff" asp-controller="Account">Выход</a>
+
+@foreach (var user in Model)
+{
+    if (@User.Identity.Name == user.UserName)
+    {
+        <p> @user.Famil</p>
+        <p> @user.Name </p>
+        <p> @user.Patronymic </p>
+        <p> @user.Email </p>
+        <p> @user.Money</p>
+    }
+}

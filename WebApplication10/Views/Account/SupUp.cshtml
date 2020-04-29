@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Zero.Models.Supplier>
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+
+        @foreach (var item in Model)
+        {
+            if (item.Cheak == false)
+            {
+                <h1 style="color: #419d7f; text-decoration: underline;">Заявки на добавления к поставщикам</h1>
+                <div class="row" style="margin-top: 40px;margin-left: 37px;">
+                    <div class="col">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Компания</th>
+                                    <th>телефон</th>
+                                    <th>Номер</th>
+                                    <th>Документ</th>
+                                    <th>Решения по заявке</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@item.Company</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.NumberCard</td>
+                                    <td>
+                                        @if (item.Docyment != null)
+                                        {
+                                            <img style="width:80px;" onmouseover="this.style.width ='800px'" onmouseout="this.style.width='80px'"
+                                                 src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Docyment))" />
+                                        }
+                                    </td>
+                                    <td>                                       
+                                        <form asp-action="DelSup" asp-controller="Account" asp-route-id="@item.IdSupplier">
+                                            <button class="btn btn-outline-danger" type="submit">Удалить</button>
+                                        </form>
+                                        
+                                        <form asp-action="SupUp">
+                                            <input type="hidden" asp-for="@item.IdSupplier" />
+                                            <input type="submit" asp-route-id="@item.IdSupplier" value="Принять" class="btn btn-outline-danger" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <center><h3>Заявок нет</h3></center>
+                break;
+            }
+        }
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

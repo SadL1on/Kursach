@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Zero.Models.Supplier>
+@{ 
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+        <h1 style="
+        color: #419d7f;
+        text-decoration: underline;
+        ">
+            Магазины
+        </h1>
+        <div class="row" style="margin-top: 40px;margin-left: 37px;">
+            <div class="col" style="display: contents;">
+                @foreach (var item in Model)
+                {
+
+                    <div class="card" style="width: 252px;border: 1px solid #419d7f;margin-right: 10px;margin-bottom: 10px;">
+
+                        @if (item.Docyment != null)
+                        {
+                            <img class="card-img-top" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Docyment))" alt="Card image" style="width:100%">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src="~/img/lol.gif" alt="Card image" style="width:100%">
+                        }
+
+                        <div class="card-body">
+                            <h4 class="card-title">"@item.Company"</h4>
+
+                            <a asp-action="SupliverProduct" asp-route-id="@item.IdSupplier" class="btn btn-outline-success btn-block" style="
+                            width: 100%;">Перейти</a>
+                            <a asp-action="Details" asp-route-id="@item.IdSupplier" class="btn btn-outline-success btn-block" style="
+                            width: 100%;">Подробнее</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+</body>
+</html>

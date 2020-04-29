@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Zero.Models.Product>
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+        <div style="
+        display: inline-flex;
+        ">
+            <h1 style="
+          color: #419d7f;
+          text-decoration: underline;
+          ">
+                Товар
+            </h1>
+            <form>
+                <button asp-action="Create" asp-controller="Items" class="btn btn-outline-success" type="submit" style="margin-left: 50px; height: 50px;">
+                    Добавить товар
+                </button>
+            </form>
+</div>
+
+    <div class="row" style="margin-top: 40px;margin-left: 37px;">
+        @foreach (var item in Model)
+        {
+            <div class="col" style="display: contents;">
+                <div class="card" style="width: 282px;border: 1px solid #419d7f;margin-right: 10px;margin-bottom: 10px;">
+                    @if (item.Image != null)
+                    {
+                        <img class="card-img-top" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))" alt="Card image" style="width:100%">
+                    }
+                    else
+                    {
+                        <img class="card-img-top" src="~/img/how.jpg" alt="Card image" style="width:100%">
+                    }
+
+                <div class="card-body">
+
+                    <h4 class="card-title"> @item.Title</h4>
+                    <h4 class="card-title">@item.Description</h4>
+                    <h4 class="card-title">Цена @item.Cost</h4>
+                    <h4 class="card-title">Количество @item.Col</h4>
+                    <form asp-action="Delete" asp-controller="Items" method="post">
+                        <div style="border: 1px solid gray;border-radius: 8px;text-align: center;margin-bottom: 10px;">Кол-во товара @item.Col</div>
+                        <a asp-action="Edit" asp-route-id="@item.IdProd" class="btn btn-outline-warning" style="float:left;width: 143px;height: 38px;">Редактировать</a>
+
+                        <button asp-action="Delete" asp-route-id="@item.IdProd" class="btn btn-outline-danger" style="float:right;"> Удалить </button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        }
+        </div>
+
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

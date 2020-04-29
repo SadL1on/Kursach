@@ -1,0 +1,111 @@
+﻿@model Zero.Models.Product
+@using WebApplication10.ViewModels
+@using WebApplication10.Models
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+
+
+        <h1 style="
+          color: #419d7f;
+          text-decoration: underline;
+          ">
+            Редактировать товар
+        </h1>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col"></div>
+            <div class="col" style="display: contents;">
+                <div>
+                    <form asp-action="Edit" asp-controller="Items" method="post" enctype="multipart/form-data" class="form-signin" style="
+              width: 500px;
+              border: 1px solid #644a72;
+              border-radius: 8px;
+              padding: 50px;
+              ">
+                        <h2 style="
+                color: #644a72;
+                background: #644a7238;
+                text-decoration: underline;
+                padding-bottom: 6px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                text-align: center;
+                ">
+                            Редактировать товар
+                        </h2>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="IdProd" type="hidden" class="form-control" />
+                        <span asp-validation-for="IdProd" class="text-danger"></span>
+                        <div class="form-group">
+                            <input asp-for="IdSupplier" type="hidden" class="form-control" />
+                            <span asp-validation-for="IdSupplier" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnaim">Наименование</label>
+                            <input type="text" id="inputNaim" asp-for="Title" class="form-control" placeholder="Наименование" required="" autofocus="">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnaim">Описание</label>
+                            <input type="text" id="inputNaim" asp-for="Description" class="form-control" placeholder="Наименование" required="" autofocus="">
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputkol">Количество</label><br>
+                            <input type="number" class="form-control" id="kol" asp-for="Col" min="1" placeholder="1" style="height: 38px;">
+                            <span asp-validation-for="Col" class="text-danger"></span>
+                            <script>
+                                document.getElementById('checktel').onkeydown = function (e) {
+                                    return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                }</script>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnumb">Цена</label>
+                            <input type="text" id="checktel" min="1" asp-for="Cost" class="form-control" placeholder="Цена" required="" autofocus="">
+                            <span asp-validation-for="Cost"  class="text-danger"></span>
+                            <script>
+                                document.getElementById('checktel').onkeydown = function (e) {
+                                    return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                }</script>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputnumb">Добавить фото</label>
+                            <input asp-for="Image" required type="file" class="form-control-file border">
+                            <span asp-validation-for="Cost" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-outline-success btn-block" type="submit">Изменить</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <!-- Optional JavaScript -->
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

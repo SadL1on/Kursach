@@ -1,0 +1,211 @@
+﻿
+@model Zero.ViewModels.AddMoneyViewModel
+
+@{
+    Layout = null;
+}
+@*<h2>+money</h2>
+
+    <form asp-action="Addmoney" method="post">
+
+        <div class="form-group">
+            <label for="name">Номер</label>
+            <input type="number" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>CSV</label>
+            <input type="number" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>date</label>
+            <input type="date" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="name">Номер</label>
+            <input type="number" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Money">Money</label>
+            <input asp-for="Money" type="number" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>*@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: 560px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+        <h1 style="
+        color: #419d7f;
+        text-decoration: underline;
+        ">
+            Пополнение счёта
+        </h1>
+        <form asp-action="Addmoney" method="post">
+            <div style="
+          font-size: 0;
+          max-height: 270px;
+          height: 270px;
+          border-radius: 6px;
+          border: 1px solid #e3e3e3;
+          width: max-content;
+          background-color: #e3e3e3;
+          ">
+                <div style="
+            display: inline-block;
+            background-color: #f8f8f8;
+            font-size: 21px;
+            height: 100%;
+            width: 570px;
+            float: left;
+            border: 1px solid #e3e3e3;
+            border-radius: 8px;
+            ">
+                    <div style="
+              margin-right: 20px;
+              ">
+
+                        <img src="~/img/mir.png" style="height: 30px;float: right;margin-top: 8px;margin-left: 8px;">
+                        <img src="~/img/Maestro.png" style="height: 34px;float: right;margin-top: 6px;">
+                        <img src="~/img/visa.png" style="height: 35px;float: right;margin-top: 6px;">
+                        <img src="~/img/visa.png" style="height: 47px;float: right;">
+                        <img src="~/img/lol.gif" style="height: 50px;float: right;border: 0px solid white;border-radius: 50px;">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required minlength="16" maxlength="16" class="form-control justify-content-center" id="check" name="nomer" placeholder="Номер карты" step="any" style="
+                width: 85%;
+                margin-left: 42px;
+                margin-top: 70px;
+                ">
+                        <script>
+                            document.getElementById('check').onkeydown = function (e) {
+                                return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                            }
+                        </script>
+                    </div>
+                    <div class="form-group" style="
+              margin-right: 47px;
+              margin-top: 35px;
+              ">
+                        <select class="form-control" id="god" style="
+                width: 29%;
+                float: right;
+                ">
+                            <option>2019</option>
+                            <option>2020</option>
+                            <option>2021</option>
+                            <option>2022</option>
+                            <option>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                        </select>
+                        <select class="form-control" id="mes" style="
+                width: 29%;
+                float: right;
+                ">
+                            <option>1 - Январь</option>
+                            <option>2 - Фефраль</option>
+                            <option>3 - Март</option>
+                            <option>4 - Апрель</option>
+                            <option>5 - Май</option>
+                            <option>6 - Июнь</option>
+                            <option>7 - Июль</option>
+                            <option>8 - Август</option>
+                            <option>9 - Сентябрь</option>
+                            <option>10 - Октябрь</option>
+                            <option>11 - Ноябрь</option>
+                            <option>12 - Декабрь</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="
+              margin-top: 110px;
+              ">
+                        <input type="text" required minlength="5" maxlength="16" min="10000000" class="form-control justify-content-center" id="check1" name="nomer" placeholder="Владелец карты" step="any" style="
+                width: 85%;
+                margin-left: 42px;
+                margin-top: 70px;
+                ">
+                        <script>
+                            document.getElementById('check1').onkeydown = function (e) {
+                                return !(/^[0-9 ]$/.test(e.key));  // IE > 9
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div style="
+            display: inline-block;
+            font-size: 21px;
+            height: 100%;
+            width: 250px;
+            ">
+                    <div style="background-color: #5d5d5d;height: 45px;margin-top: 47px;"></div>
+                    <div style="
+              margin-top: 40px;
+              ">
+                        <div style="background-color: #c7c7c7;height: 45px;width: 110px;display: inline-block;float: left;">
+                        </div>
+                        <div style="
+                display: inline-block;
+                ">
+                            <input type="text" minlength="3" required  class="form-control justify-content-center" id="check2" name="nomer" placeholder="CVC" step="any" maxlength="3" style="width: 73px;height: 45px;margin-left: 30px;">
+                            <script>
+                                document.getElementById('check2').onkeydown = function (e) {
+                                    return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                                }
+                            </script>
+                            <dl style="
+                  font-size: 13px;
+                  text-align: right;
+                  color: #5d5d5d;
+                  ">
+                                Три цифры с
+                                <br>обратной
+                                <br>стороны карты
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="
+          margin-top: 20px;
+          margin-bottom: 0rem;
+          ">
+                <input type="number" required  asp-for="Money" min="1" class="form-control justify-content-center" id="checksumm" placeholder="Сумма пополнения" step="any" style="
+            width: 23%;
+            ">
+                <script>
+                    document.getElementById('checksumm').onkeydown = function (e) {
+                        return !(/^[А-Яа-яA-Za-z ]$/.test(e.key));  // IE > 9
+                    }
+                </script>
+            </div>
+            <button class="btn btn-outline-success btn-block" type="submit" style="
+          width: 23%;
+          height: 51px;
+          margin-top: 23px;
+          ">
+                Пополнить
+            </button>
+        </form>
+    </div>
+ 
+
+
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
+
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebApplication10.Models.CartItems>
+@using Zero.Models
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="~/css/yourstyle.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <title>Корзина</title>
+</head>
+<body style="background-color: #cceae0;">
+    <div class="container" style="background-color: white;margin-top: 60px;width: 100%;height: max-content;padding-bottom: 20px;">
+        @{ await Html.RenderPartialAsync("_GetNavBar");}
+        <h1 style="color: #419d7f; text-decoration: underline;">Корзина</h1>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col" style="">
+                <div style="border: 1px solid #644a89;border-radius: 8px;padding-top: 10px;padding-right: 10px;padding-left: 10px;">
+                    <h2 style="color: #644a72; border-bottom: 1px solid #644a72;"></h2>
+                    @{int a = 0;
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 49%;">Товар</th>
+                                    <th>Количество</th>
+                                    <th>Цена</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                a += item.CartPrice;
+                                <tbody>
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Number)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.CartPrice)</td>
+                                        <td>
+                                            <form asp-action="Delete" asp-controller="CartItems" asp-route-id="@item.AllId">
+                                                <button class="btn btn-outline-danger btn-block" type="submit">Удалить</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                        <h2>Итого к оплате : @a</h2>
+                        }
+                    </div>
+                <div>
+                </div>                           
+                @if (Model.Count() == 0) { }
+                else
+                {
+                    <form asp-action="Buy" asp-controller="Сheck">
+                        <button class="btn btn-outline-success btn-block" style="float:right;width: 17%;margin-top: 18px;" type="submit">Оплатить заказ</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
